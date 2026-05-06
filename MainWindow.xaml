@@ -1,0 +1,59 @@
+﻿<Window x:Class="FileCryptApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Crypto Messenger (Indeks 1)" Height="500" Width="750" Background="#F0F2F5">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <GroupBox Header="Podešavanja Zaštite" Margin="0,0,0,10" Padding="10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Algoritam:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <ComboBox x:Name="cmbAlgorithm" Width="150" SelectedIndex="0" SelectionChanged="cmbAlgorithm_SelectionChanged">
+                        <ComboBoxItem Content="XXTEA-CBC"/>
+                        <ComboBoxItem Content="Railfence"/>
+                    </ComboBox>
+                    <TextBlock Text="Mode:" VerticalAlignment="Center" Margin="20,0,5,0"/>
+                    <ComboBox x:Name="cmbMode" Width="120" SelectedIndex="0" SelectionChanged="cmbMode_SelectionChanged">
+                        <ComboBoxItem Content="KEYFILE"/>
+                        <ComboBoxItem Content="RSA"/>
+                    </ComboBox>
+
+                    <Separator Margin="20,0" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
+
+                    <Button x:Name="btnStartFSW" Content="Pokreni FSW" Width="100" Click="btnStartFSW_Click" Background="#D4EDDA"/>
+                    <Button x:Name="btnStopFSW" Content="Zaustavi" Width="80" Margin="5,0,0,0" Click="btnStopFSW_Click" IsEnabled="False" Background="#F8D7DA"/>
+                    <Button x:Name="btnGenKey" Content="Generiši ključ" Width="120" Margin="10,0,0,0" Click="BtnGenKey_Click"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Mrežno Slanje (TCP)" Margin="0,0,0,10" Padding="10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="IP:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <TextBox x:Name="txtIpAddress" Width="100" Text="127.0.0.1" VerticalContentAlignment="Center"/>
+
+                    <TextBlock Text="Port:" VerticalAlignment="Center" Margin="10,0,5,0"/>
+                    <TextBox x:Name="txtPort" Width="50" Text="8080" VerticalContentAlignment="Center"/>
+
+                    <Button x:Name="btnConnect" Content="Pokreni Prijem" Margin="10,0,0,0" Padding="10,2" Click="BtnStartServer_Click" Background="#E3F2FD"/>
+
+                    <Button x:Name="btnSendFile" Content="Pošalji Fajl" Margin="5,0,0,0" Padding="10,2" Click="BtnSend_Click" Background="#FFF3E0"/>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+
+        <GroupBox Header="Aktivnosti Aplikacije" Grid.Row="1" Margin="0,10">
+            <ListBox x:Name="lstLogs" FontFamily="Consolas" FontSize="11" Background="White"/>
+        </GroupBox>
+
+        <StatusBar Grid.Row="2">
+            <StatusBarItem>
+                <TextBlock x:Name="txtStatus" Text="Spremno." FontWeight="Bold"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
